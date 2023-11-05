@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name:  seven-api-ingress
+  annotations:
+    nginx.org/mergeable-ingress-type: "master"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    
+spec:
+  rules:
+  - host: evolution.k8
+    http:
+      paths:
+      - path: /seven-api
+        pathType: Prefix
+        backend:
+          service:
+            name:  seven-api
+            port:
+              number: 8080

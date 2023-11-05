@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: SevenApi
+namespace: staging
+bases:
+  - ../../base
+commonAnnotations:
+  app: SevenApi
+  backstage.io/kubernetes-id: "SevenApi"
+commonLabels:
+  app: SevenApi
+  backstage.io/kubernetes-id: "SevenApi"
+patchesStrategicMerge:
+  - configmap_patch.yaml
+  - deployment_patch.yaml
